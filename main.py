@@ -9,6 +9,8 @@ from data import email, pwd
 
 
 def login_and_search():
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
     driver = webdriver.Chrome()
     driver.get('https://lk.repetitor.ru/order/teacher')
     repetitor_button = WebDriverWait(driver, 10).until(
@@ -49,7 +51,11 @@ def login_and_search():
 
 
 def main():
-    login_and_search()
+    while True:
+        try:
+            login_and_search()
+        except Exception:
+            time.sleep(5)
 
 
 main()
